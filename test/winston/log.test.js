@@ -6,7 +6,7 @@ describe('Log', () => {
   const directory = 'log';
   after(() => {
     const files = fs.readdirSync(directory);
-    files.forEach(file => {
+    files.forEach((file) => {
       fs.unlinkSync(path.join(directory, file));
     });
   });
