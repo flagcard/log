@@ -1,0 +1,36 @@
+{
+  "name": "@flagcard/log",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "NODE_ENV=test node_modules/mocha/bin/_mocha  --opts test/config/mocha.opts --recursive ./test/**/*.test.js",
+    "lint": "eslint src/** index.js test/**",
+    "lint:fix": "eslint src/** index.js test/** --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flagcard/log.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/flagcard/log/issues"
+  },
+  "homepage": "https://github.com/flagcard/log#readme",
+  "dependencies": {
+    "winston": "^3.2.1",
+    "winston-daily-rotate-file": "^3.9.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^5.14.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "mocha": "^6.1.4",
+    "sinon": "^7.3.2"
+  }
+}
