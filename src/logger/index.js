@@ -8,14 +8,14 @@ const logger = winston.createLogger({
     winston.format.timestamp(),
     format,
   ),
-  transports: [
-    transport.error,
-    transport.info,
-  ],
+  transports: [],
 });
 
-if (process.env.NODE_ENV !== 'production') {
-  logger.add(transport.console(format));
+if (process.env.NODE_ENV === 'production') {
+  logger.add(transport.info());
+  logger.add(transport.error());
+} else {
+  logger.add(transport.console()(format));
 }
 
 module.exports = logger;

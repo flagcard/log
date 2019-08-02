@@ -1,3 +1,3 @@
-const log = require('./src/winston/log');
+const log = require('./src/logger');
 
 module.exports = log;
