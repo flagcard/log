@@ -8,7 +8,13 @@ module.exports = {
     next();
   },
   errorLogMiddleware: (err, req, res, next) => {
-    log.error(`something went wrong in asgard: ${JSON.stringify(err)}`);
+    let error;
+    try {
+      error = JSON.stringify(err);
+    } catch (e) {
+      error = JSON.stringify(err.stack);
+    }
+    log.error(`something went wrong in asgard: ${error}`);
     next(err);
   },
 };
