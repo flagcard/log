@@ -10,9 +10,15 @@ module.exports = {
   errorLogMiddleware: (err, req, res, next) => {
     let error;
     try {
-      error = JSON.stringify(err);
+      if (err.message) {
+        error = JSON.stringify(err.message);
+      } else if (err.stack) {
+        error = JSON.stringify(err.stack);
+      } else {
+        error = JSON.stringify(err);
+      }
     } catch (e) {
-      error = JSON.stringify(err.stack);
+      error = 'Não foi possível decodificar o erro.';
     }
     log.error(`something went wrong in asgard: ${error}`);
     next(err);
