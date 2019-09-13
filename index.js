@@ -1,3 +1,3 @@
-const log = require('./src/logger');
+const logger = require('./src/flagcard/logger');
 
-module.exports = log;
+module.exports = logger;
