@@ -1,4 +1,4 @@
-const { log } = require('../../index');
+const log = require('../../index');
 
 describe('Log', () => {
   it('Log format structure for info level', () => {

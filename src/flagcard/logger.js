@@ -35,6 +35,4 @@ const logger = winston.createLogger({
   transports,
 });
 
-module.exports = {
-  log: logger,
-};
+module.exports = logger;
