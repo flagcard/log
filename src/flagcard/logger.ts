@@ -5,8 +5,8 @@ import { formatToTimeZone } from 'date-fns-timezone';
 const timeZone = 'America/Manaus';
 
 const format = winston.format.printf(({ level, message, timestamp }) => {
-  const localDate = formatToTimeZone(timestamp, 'HH:mm:ss', { timeZone });
-  return `[${level.toLowerCase()} ${localDate}]: ${message}`;
+  const localDate = formatToTimeZone(timestamp, 'MMM DD, YYYY @ HH:mm:ss', { timeZone });
+  return `[${localDate}]-[${level.toLowerCase()}]: ${message}`;
 });
 
 const transports = [];
