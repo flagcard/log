@@ -17,7 +17,7 @@ transports.push(
   }),
 );
 
-if(process.env.NODE_ENV === 'production'){
+if(process.env.FLAGCARD_WRITE_LOG){
   transports.push(new (winston.transports.DailyRotateFile)({
     filename: 'logs/application-%DATE%.log',
     datePattern: 'YYYYMMDDHH',
