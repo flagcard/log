@@ -1,0 +1,40 @@
+name: Continous Intergrations
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    env:
+      REPOSITORY: log
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Settings git
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@master
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: npm install, build, and test
+        run: |
+          if [[ $(git log -1 | grep "Alterando para versão") ]]
+          then
+              echo NAO APLICAR
+          else
+              npm i
+              npm run lint
+              npm test
+          fi
+        env:
+          CI: true
