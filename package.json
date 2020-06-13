@@ -6,8 +6,12 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc --declaration",
+    "test": "NODE_ENV=test jest --config jest.config.json",
+    "test:unit": "jest --coverage --config jest.config.json",
+    "test:watch": "jest --watch --config jest.config.json",
     "lint": "eslint index.ts src/** --ext ts",
-    "lint:fix": "eslint index.ts src/** --ext ts --fix"
+    "lint:fix": "eslint index.ts src/** --ext ts --fix",
+    "deploy": "del-cli --force ./dist && npm version patch && npm run build && npm publish"
   },
   "repository": {
     "type": "git",
@@ -28,6 +32,7 @@
     "@types/winston": "^2.4.4",
     "@typescript-eslint/eslint-plugin": "^2.31.0",
     "@typescript-eslint/parser": "^2.31.0",
+    "del-cli": "^3.0.1",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-import-resolver-typescript": "^2.0.0",
