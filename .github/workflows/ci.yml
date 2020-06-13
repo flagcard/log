@@ -38,3 +38,13 @@ jobs:
           fi
         env:
           CI: true
+      - name: Improving version and Push to github
+        run: |
+          if [[ $(git log -1 | grep "Alterando para versão") ]]
+          then
+              echo NAO APLICAR
+          else
+              npm version patch
+              git push https://andersoncruzz:$TOKEN_GITHUB@github.com/flagcard/$REPOSITORY.git master
+              git push https://andersoncruzz:$TOKEN_GITHUB@github.com/flagcard/$REPOSITORY.git v$(grep '"version":' package.json -m1 | cut -d\" -f4)
+          fi
