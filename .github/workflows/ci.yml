@@ -49,5 +49,5 @@ jobs:
               npm version patch
               version=$(grep '"version":' package.json -m1 | cut -d\" -f4)
               git commit -a -m "Alterando para versão: ${version}"
-              git push
+              git push -f
           fi
