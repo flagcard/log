@@ -9,6 +9,7 @@ jobs:
   build:
     env:
       REPOSITORY: log
+      TOKEN_GITHUB: ccd4f093545379a60c860dbc0fd1c420cd014568
     runs-on: ubuntu-latest
 
     strategy:
@@ -44,7 +45,7 @@ jobs:
           then
               echo NAO APLICAR
           else
+              git checkout -f
               npm version patch
-              git push https://andersoncruzz:$TOKEN_GITHUB@github.com/flagcard/$REPOSITORY.git master
-              git push https://andersoncruzz:$TOKEN_GITHUB@github.com/flagcard/$REPOSITORY.git v$(grep '"version":' package.json -m1 | cut -d\" -f4)
+              echo $(grep '"version":' package.json -m1 | cut -d\" -f4)
           fi
