@@ -48,5 +48,6 @@ jobs:
               git checkout -f
               npm version patch
               version=$(grep '"version":' package.json -m1 | cut -d\" -f4)
-              echo $version
+              git commit -a -m "Alterando para versão: ${version}"
+              git push --force master
           fi
