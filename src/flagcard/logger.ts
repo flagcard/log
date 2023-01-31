@@ -1,20 +1,20 @@
-import tracer from 'dd-trace';
+import { formatToTimeZone } from 'date-fns-timezone';
 import winston from 'winston';
 import 'winston-daily-rotate-file';
 
-tracer.init({
-  logInjection: true,
-});
+const timeZone = 'America/Manaus';
 
-const addAppNameFormat = winston.format((info) => info);
+const format = winston.format.printf(({ level, message, timestamp }) => {
+  const localDate = formatToTimeZone(timestamp, 'MMM DD, YYYY @ HH:mm:ss', {
+    timeZone,
+  });
+
+  return `[${localDate}]-[${level.toLowerCase()}]: ${message}`;
+});
 
 const transports = [];
 
-transports.push(
-  new winston.transports.Console({
-    format: winston.format.combine(addAppNameFormat(), winston.format.json()),
-  }),
-);
+transports.push(new winston.transports.Console({ format }));
 
 if (process.env.FLAGCARD_WRITE_LOG) {
   transports.push(
@@ -29,7 +29,6 @@ if (process.env.FLAGCARD_WRITE_LOG) {
 
 export default winston.createLogger({
   level: 'info',
-  exitOnError: false,
-  format: winston.format.combine(addAppNameFormat(), winston.format.json()),
+  format: winston.format.combine(winston.format.timestamp(), format),
   transports,
 });

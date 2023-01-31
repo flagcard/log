@@ -1,12 +1,13 @@
-import log from '../../index';
+import logger from '../../index';
 
 describe('Log', () => {
   it('Log format structure for info level', () => {
     const MESSAGE = 'this is a simple INFO message';
-    log.info(MESSAGE);
+    logger.options.loggerWithoutTracer.info(MESSAGE);
   });
+
   it('Log format structure for error level', () => {
     const MESSAGE = 'this is a simple ERROR message';
-    log.error(MESSAGE);
+    logger.options.loggerTracer.error(MESSAGE);
   });
 });
