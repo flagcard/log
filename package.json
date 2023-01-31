@@ -1,11 +1,21 @@
 {
   "name": "@flagcard/log",
-  "version": "2.2.2",
+  "version": "2.3.1",
   "description": "",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "index.js",
+  "files": ["dist"],
+  "exports":{
+    ".": ["./dist/index.js"],
+    "./tracer": ["./dist/tracer.js"]
+  },
+  "typesVersions": {
+    "*":{
+      "*": ["./dist/index.d.ts"],
+      "tracer": ["./dist/tracer.d.ts"]
+    }
+  },
   "scripts": {
-    "build": "tsc --declaration",
+    "build": "rimraf dist && tsc --declaration",
     "test": "NODE_ENV=test jest --config jest.config.json",
     "test:unit": "jest --coverage --config jest.config.json",
     "test:watch": "jest --watch --config jest.config.json",
@@ -38,8 +48,9 @@
     "eslint-import-resolver-typescript": "^2.0.0",
     "eslint-plugin-import": "^2.20.2",
     "jest": "^26.0.1",
+    "rimraf": "^4.1.2",
     "ts-jest": "^26.0.0",
-    "typescript": "^3.9.3"
+    "typescript": "^4.0.1"
   },
   "dependencies": {
     "date-fns": "^2.14.0",
